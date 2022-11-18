@@ -1,4 +1,4 @@
-package day1
+package day0
 
 import (
 	"fmt"
@@ -65,8 +65,8 @@ func part1(list []instruction) {
 }
 
 func Run() {
-	fmt.Println("--- Day1 ---")
-	absPath, _ := filepath.Abs("./day1/day1.txt")
+	fmt.Println("--- Day0 ---")
+	absPath, _ := filepath.Abs("./day0/day0.txt")
 	var input = utils.ReadFile(absPath)
 	var instructionString = input[0];
 	var instuctionList = getInstruction(instructionString)
