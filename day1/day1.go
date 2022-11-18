@@ -14,10 +14,10 @@ type instruction struct{
   distance int
 }
 
-func getDistanceFromCenter(xcoord int, ycoord int) float64 {
+func GetDistanceFromCenter(xcoord int, ycoord int) int {
 
 	var sum = math.Abs(float64(xcoord)) + math.Abs(float64(ycoord))
-	return sum 
+	return int(sum) 
 }
 
 func part1(list []instruction) {
@@ -60,7 +60,7 @@ func part1(list []instruction) {
 			}
 		}
 	}
-	var result = getDistanceFromCenter(x, y)
+	var result = GetDistanceFromCenter(x, y)
 	fmt.Println("\tPart 1: ", result);
 }
 
