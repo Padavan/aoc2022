@@ -29,3 +29,12 @@ func ReadFile(path string) []string {
 
   return lines
 }
+
+func IndexOf(element string, data []string) (int) {
+   for k, v := range data {
+       if element == v {
+           return k
+       }
+   }
+   return -1
+}
