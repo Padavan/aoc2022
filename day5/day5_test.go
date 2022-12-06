@@ -6,8 +6,8 @@ var testInput = []string{"    [D]    ", "[N] [C]    ", "[Z] [M] [P]", " 1   2   
 
 func TestPart1(t *testing.T){
 
-    var got = len(testInput)
-    var want = 5
+    var got = GetTopRearrangment(testInput)
+    var want = "CMZ"
 
     if got != want {
         t.Errorf("got %q, wanted %q", got, want)
