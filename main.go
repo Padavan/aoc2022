@@ -7,7 +7,8 @@ import (
     // D3 "aoc2022/day3"
     // D4 "aoc2022/day4"
     // D5 "aoc2022/day5"
-    D6 "aoc2022/day6"
+    // D6 "aoc2022/day6"
+    D7 "aoc2022/day7"
 )
 
 func main() {
@@ -17,5 +18,6 @@ func main() {
     // D3.Run();
     // D4.Run();
     // D5.Run();
-    D6.Run();
+    // D6.Run();
+    D7.Run();
 }
