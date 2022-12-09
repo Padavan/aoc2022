@@ -9,19 +9,6 @@ import (
 	// "sort"
 )
 
-type file struct {
-	name string
-	size int
-}
-
-type dir struct {
-	name string
-	parent *dir
-	folders []*dir
-	files []file
-	size int
-}
-
 func part1(line []string) {
 	var count = GetVisibleTreeCount(line)
 	fmt.Println("\tPart 1: ", count);
