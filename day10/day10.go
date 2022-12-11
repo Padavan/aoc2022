@@ -24,7 +24,8 @@ func part2(input []string) {
 
 
 func Run() {
-	absPath, _ := filepath.Abs("./day10/day10.txt")
+	fmt.Println("--- Day 10 ---")
+	absPath, _ := filepath.Abs("./input/day10.txt")
 	var input = utils.ReadFile(absPath)
 	part1(input)
 	part2(input)

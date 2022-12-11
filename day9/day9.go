@@ -28,7 +28,8 @@ func part1(line []string) {
 
 
 func Run() {
-	absPath, _ := filepath.Abs("./day9/day9.txt")
+	fmt.Println("--- Day 9 ---")
+	absPath, _ := filepath.Abs("./input/day9.txt")
 	var multiLineInput = utils.ReadFile(absPath)
 	part1(multiLineInput)
 	// part2(multiLineInput)

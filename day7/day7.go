@@ -37,7 +37,8 @@ func part2(line []string) {
 // 3842121 right
 
 func Run() {
-	absPath, _ := filepath.Abs("./day7/day7.txt")
+	fmt.Println("--- Day 7 ---");
+	absPath, _ := filepath.Abs("./input/day7.txt")
 	var multiLineInput = utils.ReadFile(absPath)
 	part1(multiLineInput)
 	part2(multiLineInput)
@@ -165,7 +166,7 @@ func GetTotalSize(input []string) (int) {
 
 	var tree = ParseInput(input);
 
-	PrintFolder(&tree, 1);
+	// PrintFolder(&tree, 1);
 
 	var size = GetFolderOver100KSumSize(&tree, 0);
 

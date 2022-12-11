@@ -22,7 +22,7 @@ func part2(list []string) {
 
 func Run() {
 	fmt.Println("--- Day1 ---")
-	absPath, _ := filepath.Abs("./day1/day1.txt")
+	absPath, _ := filepath.Abs("./input/day1.txt")
 	var input = utils.ReadFile(absPath)
 	part1(input)
 	part2(input)

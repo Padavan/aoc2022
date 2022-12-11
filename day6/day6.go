@@ -14,7 +14,6 @@ type instruction struct {
 }
 
 func part1(line string) {
-	// fmt.Println(len(line));
 	var index = GetMarkerIndex(line, 4)
 	fmt.Println("\tPart 1: ", index);
 }
@@ -28,13 +27,11 @@ func part2(line string) {
 
 func Run() {
 	fmt.Println("--- Day 6 ---")
-	absPath, _ := filepath.Abs("./day6/day6.txt")
+	absPath, _ := filepath.Abs("./input/day6.txt")
 	var multiLineInput = utils.ReadFile(absPath)
 	part1(multiLineInput[0])
 	part2(multiLineInput[0])
 }
-
-
 
 func AreCharDifferent(testString string, window int)(bool) {
 	var result = true;
