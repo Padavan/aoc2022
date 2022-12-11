@@ -38,3 +38,12 @@ func IndexOf(element string, data []string) (int) {
    }
    return -1
 }
+
+
+func Abs(number int)(int) {
+  if (number >= 0) {
+    return number;
+  } else {
+    return 0 - number;
+  }
+}
