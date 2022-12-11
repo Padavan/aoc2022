@@ -10,7 +10,8 @@ import (
     // D6 "aoc2022/day6"
     // D7 "aoc2022/day7"
     // D8 "aoc2022/day8"
-    D9 "aoc2022/day9"
+    // D9 "aoc2022/day9"
+    D10 "aoc2022/day10"
 )
 
 func main() {
@@ -23,5 +24,6 @@ func main() {
     // D6.Run();
     // D7.Run();
     // D8.Run();
-    D9.Run();
+    // D9.Run();
+    D10.Run();
 }
