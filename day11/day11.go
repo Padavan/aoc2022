@@ -19,14 +19,14 @@ func part1(input []string) {
 
 func part2(input []string) {
 	var count = GetMonkeyBusiness10K(input)
-	fmt.Println("\tPart 1: ", count);
+	fmt.Println("\tPart 2: ", count);
 }
 // 
 
 
 func Run() {
-	fmt.Println("--- Day 10 ---")
-	absPath, _ := filepath.Abs("./input/day11.example.txt")
+	fmt.Println("--- Day 11 ---")
+	absPath, _ := filepath.Abs("./input/day11.txt")
 	var input = utils.ReadFile(absPath)
 	part1(input);
 	part2(input);
@@ -35,22 +35,22 @@ func Run() {
 
 type monkey struct {
 	name int
-	items []int
+	items []int64
 	operation string
-	test int
+	test int64
 	outcomeTrue int
 	outcomeFalse int
 
 } 
 
-func getItems(line string) ([]int) {
-	var items = []int{};
+func getItems(line string) ([]int64) {
+	var items = []int64{};
 	var index = strings.Index(line, ":");
 	var commaSeparated = line[index+1:];
 
 	var spllittedNumbers = strings.Split(strings.Trim(commaSeparated, " "), ", ");	
 	for _, string_number := range spllittedNumbers {
-		var item, err = strconv.Atoi(string_number);
+		var item, err = strconv.ParseInt(string_number, 10, 64);
 		if (err != nil) {
 			panic(err)
 		};
@@ -77,10 +77,10 @@ func getOperation(line string)(string) {
 	return trimmed;
 }
 
-func getTestValue(line string)(int){
+func getTestValue(line string)(int64){
 	var newline = strings.Replace(line, "Test: divisible by", "", 1);
 	newline = strings.Trim(newline, " ");
-	var value, err = strconv.Atoi(newline);
+	var value, err = strconv.ParseInt(newline, 10, 64);
 	if (err != nil) {
 		panic(err)
 	}
@@ -99,15 +99,17 @@ func getOutcome(line string)(int){
 	return value;
 }
 
-func DoOperation(operation string, value int)(int) {
+func DoOperation(operation string, value int64)(int64) {
 	var stripped = strings.Replace(operation, "new = old ", "", 1);
 	var separated = strings.Split(stripped, " ");
 
-	var right int;
+	var right int64;
 	if (separated[1] == "old") {
 		right = value;
+	} else if (separated[1] == "old" && separated[0] == "*") {
+		right = 1;
 	} else {
-		var parsedValue, err = strconv.Atoi(separated[1]);
+		var parsedValue, err = strconv.ParseInt(separated[1], 10, 64);
 		if (err != nil) {
 			panic(err);
 		}
@@ -124,7 +126,7 @@ func DoOperation(operation string, value int)(int) {
 	}
 }
 
-func TestWorryLevel(dividers int, level int) (bool) {
+func TestWorryLevel(dividers int64, level int64) (bool) {
 	if (level % dividers == 0) {
 		return true;
 	} else {
@@ -160,7 +162,7 @@ func PlayRound(state []monkey, throw_count []int)([]monkey, []int) {
 			}
 			current_throw_state[idx] =  current_throw_state[idx] + 1;
 		}		
-		current_state[idx].items = []int{};
+		current_state[idx].items = []int64{};
 	};
 
 	return state, throw_count;
@@ -204,7 +206,6 @@ func GetMonkeyBusiness(input []string)(int) {
 
 	sort.Ints(throw_count)
 	var monkey_business = throw_count[len(throw_count) - 1] * throw_count[len(throw_count) - 2];
-	fmt.Println("throw_count: ", throw_count)
 
 	return monkey_business;
 }
@@ -213,22 +214,30 @@ func GetMonkeyBusiness(input []string)(int) {
 
 // PART 2
 func PlayRound10KEdition(state []monkey, throw_count []int)([]monkey, []int) {
+	var chinese_number int64 = 1;
+
+	for _, mon := range state {
+		chinese_number = chinese_number * mon.test;
+	}
+	// fmt.Println("chinese stuff", chinese_number);
+
 	var current_state = state;
 	var current_throw_state = throw_count;
 	for idx, current_monkey := range current_state {
 		for _, item := range current_monkey.items {
 			var worry_level = DoOperation(current_monkey.operation, item);
+			var divider = (chinese_number);
 
 			var testing_result = TestWorryLevel(current_monkey.test, worry_level);
 
 			if (testing_result) {
-				current_state[current_monkey.outcomeTrue].items = append(current_state[current_monkey.outcomeTrue].items, worry_level / current_monkey.test); 
+				current_state[current_monkey.outcomeTrue].items = append(current_state[current_monkey.outcomeTrue].items, worry_level % divider); 
 			} else {
-				current_state[current_monkey.outcomeFalse].items = append(current_state[current_monkey.outcomeFalse].items, worry_level);
+				current_state[current_monkey.outcomeFalse].items = append(current_state[current_monkey.outcomeFalse].items, worry_level % divider);
 			}
 			current_throw_state[idx] =  current_throw_state[idx] + 1;
 		}		
-		current_state[idx].items = []int{};
+		current_state[idx].items = []int64{};
 	};
 
 	return state, throw_count;
@@ -254,15 +263,15 @@ func GetMonkeyBusiness10K(input []string)(int) {
 	var throw_count = make([]int, monkey_count);
 	for i:= 0; i < ROUND_COUNT; i++ {
 		state, throw_count = PlayRound10KEdition(state, throw_count);
-		if (i + 1 == 1 || i + 1 == 20 || i + 1 == 1000) {
-			fmt.Println("--- Round ", i+1);
-			PrintThrowCount(throw_count);
+		if (i + 1 == 1 || i + 1 == 20 || i + 1 == 1000 || i + 1 == 2000 || i + 1 == 10000) {
+			// fmt.Println("--- Round ", i+1);
+			// PrintThrowCount(throw_count);
+			// PrintMonkeyItemState(state);
 		}
 	}
 
 	sort.Ints(throw_count)
 	var monkey_business = throw_count[len(throw_count) - 1] * throw_count[len(throw_count) - 2];
-	fmt.Println("throw_count: ", throw_count)
 
 	return monkey_business;
 }
