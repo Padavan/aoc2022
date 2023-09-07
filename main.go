@@ -2,6 +2,7 @@ package main
 
 import (
     "fmt"
+    // "errors"
     // D1 "aoc2022/day1"
     // D2 "aoc2022/day2"
     // D3 "aoc2022/day3"
@@ -13,8 +14,29 @@ import (
     // D9 "aoc2022/day9"
     // D10 "aoc2022/day10"
     // D11 "aoc2022/day11"
-    D12 "aoc2022/day12"
+    // D12 "aoc2022/day12"
+    // D13 "aoc2022/day13"
 )
+
+func b() {
+    num, err := c();
+    if (err) {
+        fmt.Println(err);
+    }
+}
+
+func c()(int) {
+    err := errors.New("some error")
+    // noterror := 69;
+    panic(err);
+    return 1
+}
+
+func a() {
+    b();
+    
+}
+
 
 func main() {
     fmt.Println("=== Advent of Go 2022 ===")
@@ -29,5 +51,8 @@ func main() {
     // D9.Run();
     // D10.Run();
     // D11.Run();
-    D12.Run();
+    // D12.Run();
+    // D13.Run();
+    a();
 }
+

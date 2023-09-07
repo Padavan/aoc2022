@@ -4,10 +4,6 @@ import (
 	"fmt"
 	"path/filepath"
 	"aoc2022/utils"
-	// "strings"
-	// "strconv"
-	// "sort"
-	// "regexp"
 )
 
 func part1(input []string) {
